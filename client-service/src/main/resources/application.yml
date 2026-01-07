@@ -1,0 +1,30 @@
+server:
+    port: 8081  # Port pour le service client
+
+spring:
+    application:
+        name: service-client  # Nom du service tel qu'il apparaîtra dans Eureka (minuscules pour Gateway)
+    datasource:
+        driver-class-name: org.h2.Driver
+        url: jdbc:h2:mem:clientservicedb  # Base de données H2 en mémoire
+        username: sa
+        password: ""
+    h2:
+        console:
+            enabled: true  # Active la console H2 pour visualiser les données
+    jpa:
+        hibernate:
+            ddl-auto: update  # Crée ou met à jour automatiquement le schéma de la base
+            show-sql: true    # Affiche les requêtes SQL générées
+
+# Configuration Eureka
+eureka:
+    client:
+        service-url:
+            defaultZone: http://localhost:8761/eureka/  # URL du serveur Eureka
+    instance:
+        prefer-ip-address: true  # Utilise l'adresse IP plutôt que le nom d'hôte
+        port: 8081  # Port explicite pour Eureka
+        non-secure-port: 8081  # Port non sécurisé
+        non-secure-port-enabled: true  # Active le port non sécurisé
+
